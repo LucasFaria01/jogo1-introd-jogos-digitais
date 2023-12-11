@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bi2m06bjrd48w"]
 
-[ext_resource type="Script" path="res://Scripts/jogador1.gd" id="1_7rpog"]
+[ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_7rpog"]
 [ext_resource type="Texture2D" uid="uid://bhuireogepjio" path="res://Assets/SimpleCharacter/Girl-Sheet.png" id="2_80vl2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3blt"]
