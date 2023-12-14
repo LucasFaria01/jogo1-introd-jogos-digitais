@@ -16,7 +16,6 @@ func _ready():
 	timer_counter.text = str("%02d" % default_minutes) + ":" + str("%02d" % default_seconds)
 	reset_clock_timer()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if minutes == 0 and seconds == 0:

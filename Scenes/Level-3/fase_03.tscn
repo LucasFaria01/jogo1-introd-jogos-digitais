@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d555q63gdkix"]
+[gd_scene load_steps=11 format=3 uid="uid://d555q63gdkix"]
 
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="1_dx02j"]
 [ext_resource type="Texture2D" uid="uid://l1n14gmv1f52" path="res://Assets/Pixel Art Top Down/TX Props.png" id="2_gawtk"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="2_mws6a"]
 [ext_resource type="Script" path="res://Scenes/Level-3/Area2D.gd" id="4_n10uy"]
+[ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="4_uiflf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cby0"]
 texture = ExtResource("1_dx02j")
@@ -624,10 +625,16 @@ texture = ExtResource("2_gawtk")
 sources/0 = SubResource("TileSetAtlasSource_0cby0")
 sources/1 = SubResource("TileSetAtlasSource_ku1un")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvpjt"]
+size = Vector2(6.03773, 3.77362)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_u1xev"]
 radius = 29.0172
 
 [node name="fase_03" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.109804, 0.168627, 0.247059, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(640, 211)
@@ -652,10 +659,19 @@ scale = Vector2(1.325, 1.325)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Jogador_1"]
 remote_path = NodePath("../../Camera2D")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jogador_1"]
+position = Vector2(0, 2.64157)
+shape = SubResource("RectangleShape2D_wvpjt")
+
+[node name="PointLight2D" type="PointLight2D" parent="Jogador_1"]
+position = Vector2(-6.10352e-05, 0.754723)
+scale = Vector2(0.617924, 0.614976)
+texture = ExtResource("4_uiflf")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(596, 367)
 scale = Vector2(1.325, 1.325)
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("4_n10uy")
