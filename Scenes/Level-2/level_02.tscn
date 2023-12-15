@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://ccr6diyui7op4"]
+[gd_scene load_steps=38 format=3 uid="uid://ccr6diyui7op4"]
 
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="1_dnget"]
+[ext_resource type="AudioStream" uid="uid://glki0hfsh6by" path="res://Assets/Sounds/andando_no_concreto.mp3" id="2_5d52y"]
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="2_16jtt"]
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="3_ceha1"]
 [ext_resource type="Texture2D" uid="uid://l1n14gmv1f52" path="res://Assets/Pixel Art Top Down/TX Props.png" id="4_m6wbb"]
@@ -18,6 +19,8 @@
 [ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="16_cexag"]
 [ext_resource type="Script" path="res://Scenes/Level-2/level_02_item.gd" id="17_r0g8h"]
 [ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva_e_trovoes.mp3" id="18_7itlg"]
+[ext_resource type="Script" path="res://Scripts/barulho_manager.gd" id="19_vubtj"]
+[ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="20_7jh4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_myn5o"]
 texture = ExtResource("3_ceha1")
@@ -12775,6 +12778,7 @@ light_mask = 17
 visibility_layer = 17
 position = Vector2(596, 367)
 scale = Vector2(1.325, 1.325)
+som_passos = ExtResource("2_5d52y")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Jogador1"]
 remote_path = NodePath("../../Camera2D")
@@ -12817,10 +12821,22 @@ script = ExtResource("15_sr7e2")
 position = Vector2(576, 131)
 shape = SubResource("CircleShape2D_ehmhp")
 
+[node name="Item" type="Area2D" parent="."]
+position = Vector2(192, 246)
+script = ExtResource("17_r0g8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
+position = Vector2(576, 131)
+shape = SubResource("RectangleShape2D_kx28h")
+
+[node name="Chuva" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_7itlg")
+volume_db = -10.0
+autoplay = true
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="control" type="Control" parent="HUD"]
-visible = false
+[node name="BarulhoControl" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12829,13 +12845,9 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("16_cexag")
-default_minutes = 2
-default_seconds = 5
+script = ExtResource("19_vubtj")
 
-[node name="clock_timer" type="Timer" parent="HUD/control"]
-
-[node name="container" type="MarginContainer" parent="HUD/control"]
+[node name="Container" type="MarginContainer" parent="HUD/BarulhoControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -12851,34 +12863,69 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="coins_container" type="HBoxContainer" parent="HUD/control/container"]
+[node name="BarulhoContainer" type="HBoxContainer" parent="HUD/BarulhoControl/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="BarulhoLabel" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
+layout_mode = 2
+text = "BARULHO: "
+
+[node name="BarulhoCounter" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
+layout_mode = 2
+text = "0%"
+
+[node name="TimerControl" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_cexag")
+default_minutes = 2
+default_seconds = 5
+
+[node name="ClockTimer" type="Timer" parent="HUD/TimerControl"]
+
+[node name="Container" type="MarginContainer" parent="HUD/TimerControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TimerContainer" type="HBoxContainer" parent="HUD/TimerControl/Container"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="timer_label" type="Label" parent="HUD/control/container/coins_container"]
+[node name="TimerLabel" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
 layout_mode = 2
 text = "TEMPO: "
 
-[node name="timer_counter" type="Label" parent="HUD/control/container/coins_container"]
+[node name="TimerCounter" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
 layout_mode = 2
 text = "0000"
 
-[node name="Item" type="Area2D" parent="."]
-position = Vector2(192, 246)
-script = ExtResource("17_r0g8h")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
-position = Vector2(576, 131)
-shape = SubResource("RectangleShape2D_kx28h")
-
-[node name="Chuva" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_7itlg")
-volume_db = -10.0
-autoplay = true
+[node name="Descoberto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_7jh4h")
 
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
-[connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
 [connection signal="body_entered" from="Item" to="Item" method="_on_body_entered"]
 [connection signal="body_exited" from="Item" to="Item" method="_on_body_exited"]
+[connection signal="timeout" from="HUD/TimerControl/ClockTimer" to="HUD/TimerControl" method="_on_clock_timer_timeout"]

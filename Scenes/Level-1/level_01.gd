@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var barulho_manager := "res://Scenes/Level-1/barulho_manager.gd"
 var _som_arbusto = preload("res://Assets/Sounds/arbusto.wav")
 var _som_agua = preload("res://Assets/Sounds/agua.wav")
 var _passos = preload("res://Assets/Sounds/passos.mp3")

@@ -15,5 +15,5 @@ func _process(delta):
 	if habilitado:
 		
 		if Input.is_action_just_pressed("tecla_e"):
-			$"../HUD/control".visible = true
-			$"../HUD/control/clock_timer".start()
+			$"../HUD/TimerControl".visible = true
+			$"../HUD/TimerControl/ClockTimer".start()

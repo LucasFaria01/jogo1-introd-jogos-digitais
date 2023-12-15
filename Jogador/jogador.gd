@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
-var _velocidade = VELOCIDADE_INICIAL
 const VELOCIDADE_INICIAL = 260.0
 const VELOCIDADE_MAXIMA = 360.0
 const ACELERACAO = 1
 
+@export var som_passos = preload("res://Assets/Sounds/andando_na_grama.mp3")
+
 var andando = false
+var _velocidade = VELOCIDADE_INICIAL
 
 signal esta_correndo()
 
 @onready var animacao = $Animacao as AnimatedSprite2D
 
+
+func _ready():
+	$"Som-passos".stream = som_passos
 
 func _physics_process(_delta):
 	var direcao_x = Input.get_axis("player_1_esquerda", "player_1_direita") #-1 0 1 

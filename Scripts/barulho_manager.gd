@@ -38,7 +38,8 @@ func _on_agua_body_entered(body):
 	
 func update_barulho_counter(incremento: float):
 	if barulho == 0 and incremento > 0:
-		exibir_dica_barulho()
+		if get_tree().current_scene.name == "Level1":
+			exibir_dica_barulho()
 	
 	barulho += incremento
 	

@@ -1,7 +1,7 @@
 extends Control
 
-@onready var timer_counter = $container/coins_container/timer_counter as Label
-@onready var clock_timer = $clock_timer as Timer
+@onready var timer_counter = $Container/TimerContainer/TimerCounter as Label
+@onready var clock_timer = $ClockTimer as Timer # é usado?
 
 var minutes = 0
 var seconds = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://diwj7h7yjw5xr"]
+[gd_scene load_steps=46 format=3 uid="uid://diwj7h7yjw5xr"]
 
 [ext_resource type="Script" path="res://Scenes/Level-1/level_01.gd" id="1_xruvx"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="2_6keei"]
@@ -13,9 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cj42voyp64od0" path="res://Assets/Black-Tile.png" id="9_244kh"]
 [ext_resource type="Script" path="res://Scenes/Level-1/final_level_collision.gd" id="12_upw6u"]
 [ext_resource type="Script" path="res://Scenes/Level-1/vaso_collision.gd" id="13_6oaoe"]
-[ext_resource type="Script" path="res://Scenes/Level-1/barulho_manager.gd" id="14_ao21r"]
+[ext_resource type="Script" path="res://Scripts/barulho_manager.gd" id="14_sgqa3"]
+[ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="15_gjibw"]
 [ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva_e_trovoes.mp3" id="15_wm8mb"]
 [ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="16_thuy3"]
+[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://pause_menu.tscn" id="18_i7q5n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_am36i"]
 radius = 0.55
@@ -7393,7 +7395,7 @@ shape = SubResource("RectangleShape2D_60k7k")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="HUD"]
+[node name="BarulhoControl" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -7402,9 +7404,9 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("14_ao21r")
+script = ExtResource("14_sgqa3")
 
-[node name="Container" type="MarginContainer" parent="HUD/Control"]
+[node name="Container" type="MarginContainer" parent="HUD/BarulhoControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -7420,18 +7422,63 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="BarulhoContainer" type="HBoxContainer" parent="HUD/Control/Container"]
+[node name="BarulhoContainer" type="HBoxContainer" parent="HUD/BarulhoControl/Container"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="BarulhoLabel" type="Label" parent="HUD/Control/Container/BarulhoContainer"]
+[node name="BarulhoLabel" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
 layout_mode = 2
 text = "BARULHO: "
 
-[node name="BarulhoCounter" type="Label" parent="HUD/Control/Container/BarulhoContainer"]
+[node name="BarulhoCounter" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
 layout_mode = 2
 text = "0%"
+
+[node name="TimerControl" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_gjibw")
+default_minutes = 2
+default_seconds = 5
+
+[node name="ClockTimer" type="Timer" parent="HUD/TimerControl"]
+
+[node name="Container" type="MarginContainer" parent="HUD/TimerControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TimerContainer" type="HBoxContainer" parent="HUD/TimerControl/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TimerLabel" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
+layout_mode = 2
+text = "TEMPO: "
+
+[node name="TimerCounter" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
+layout_mode = 2
+text = "0000"
 
 [node name="Arbusto" type="Area2D" parent="."]
 position = Vector2(1336, 25)
@@ -7485,23 +7532,26 @@ position = Vector2(2106, 92)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SomCenario2"]
 shape = SubResource("RectangleShape2D_c7gsj")
 
+[node name="PauseMenu" parent="." instance=ExtResource("18_i7q5n")]
+
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
 [connection signal="body_entered" from="Vaso" to="Vaso" method="_on_body_entered"]
 [connection signal="body_exited" from="Vaso" to="Vaso" method="_on_body_exited"]
 [connection signal="body_entered" from="InicioFase" to="InicioFase" method="_on_body_entered"]
 [connection signal="body_exited" from="InicioFase" to="InicioFase" method="_on_body_exited"]
+[connection signal="timeout" from="HUD/TimerControl/ClockTimer" to="HUD/TimerControl" method="_on_clock_timer_timeout"]
 [connection signal="body_entered" from="Arbusto" to="." method="_on_arbusto_body_entered"]
-[connection signal="body_entered" from="Arbusto" to="HUD/Control" method="_on_arbusto_body_entered"]
+[connection signal="body_entered" from="Arbusto" to="HUD/BarulhoControl" method="_on_arbusto_body_entered"]
 [connection signal="body_entered" from="Arbusto" to="Arbusto" method="_on_body_entered"]
 [connection signal="body_exited" from="Arbusto" to="Arbusto" method="_on_body_exited"]
 [connection signal="body_entered" from="Arvore" to="." method="_on_arvore_body_entered"]
-[connection signal="body_entered" from="Arvore" to="HUD/Control" method="_on_arvore_body_entered"]
+[connection signal="body_entered" from="Arvore" to="HUD/BarulhoControl" method="_on_arvore_body_entered"]
 [connection signal="body_entered" from="ArvoreMenor1" to="." method="_on_arvoremenor_1_body_entered"]
-[connection signal="body_entered" from="ArvoreMenor1" to="HUD/Control" method="_on_arvoremenor_1_body_entered"]
+[connection signal="body_entered" from="ArvoreMenor1" to="HUD/BarulhoControl" method="_on_arvoremenor_1_body_entered"]
 [connection signal="body_entered" from="ArvoreMenor2" to="." method="_on_arvoremenor_2_body_entered"]
-[connection signal="body_entered" from="ArvoreMenor2" to="HUD/Control" method="_on_arvoremenor_2_body_entered"]
+[connection signal="body_entered" from="ArvoreMenor2" to="HUD/BarulhoControl" method="_on_arvoremenor_2_body_entered"]
 [connection signal="body_entered" from="Agua" to="." method="_on_agua_body_entered"]
-[connection signal="body_entered" from="Agua" to="HUD/Control" method="_on_agua_body_entered"]
+[connection signal="body_entered" from="Agua" to="HUD/BarulhoControl" method="_on_agua_body_entered"]
 [connection signal="body_entered" from="SomCenario1" to="." method="_on_som_cenario_1_body_entered"]
 [connection signal="body_entered" from="SomCenario2" to="." method="_on_som_cenario_2_body_entered"]

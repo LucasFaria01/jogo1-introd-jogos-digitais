@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d555q63gdkix"]
+[gd_scene load_steps=15 format=3 uid="uid://d555q63gdkix"]
 
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="1_ogqon"]
 [ext_resource type="Texture2D" uid="uid://l1n14gmv1f52" path="res://Assets/Pixel Art Top Down/TX Props.png" id="2_c1m1e"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="4_8odne"]
 [ext_resource type="Script" path="res://Scenes/Level-3/final_level_collision.gd" id="5_44fre"]
 [ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva_e_trovoes.mp3" id="6_ixewa"]
+[ext_resource type="Script" path="res://Scripts/barulho_manager.gd" id="7_06ind"]
+[ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="8_snqs6"]
+[ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="9_7ds5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cby0"]
 texture = ExtResource("1_ogqon")
@@ -686,5 +689,95 @@ stream = ExtResource("6_ixewa")
 volume_db = -15.0
 autoplay = true
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BarulhoControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_06ind")
+
+[node name="Container" type="MarginContainer" parent="HUD/BarulhoControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BarulhoContainer" type="HBoxContainer" parent="HUD/BarulhoControl/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="BarulhoLabel" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
+layout_mode = 2
+text = "BARULHO: "
+
+[node name="BarulhoCounter" type="Label" parent="HUD/BarulhoControl/Container/BarulhoContainer"]
+layout_mode = 2
+text = "0%"
+
+[node name="TimerControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_snqs6")
+default_minutes = 2
+default_seconds = 5
+
+[node name="ClockTimer" type="Timer" parent="HUD/TimerControl"]
+
+[node name="Container" type="MarginContainer" parent="HUD/TimerControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TimerContainer" type="HBoxContainer" parent="HUD/TimerControl/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TimerLabel" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
+layout_mode = 2
+text = "TEMPO: "
+
+[node name="TimerCounter" type="Label" parent="HUD/TimerControl/Container/TimerContainer"]
+layout_mode = 2
+text = "0000"
+
+[node name="Descoberto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_7ds5e")
+
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
+[connection signal="timeout" from="HUD/TimerControl/ClockTimer" to="HUD/TimerControl" method="_on_clock_timer_timeout"]
