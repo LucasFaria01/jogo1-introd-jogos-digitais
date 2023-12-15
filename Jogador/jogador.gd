@@ -5,6 +5,8 @@ const VELOCIDADE_INICIAL = 260.0
 const VELOCIDADE_MAXIMA = 360.0
 const ACELERACAO = 1
 
+var andando = false
+
 signal esta_correndo()
 
 @onready var animacao = $Animacao as AnimatedSprite2D
@@ -16,12 +18,15 @@ func _physics_process(_delta):
 	if direction_x == 0 and direction_y == 0:
 		velocidade = VELOCIDADE_INICIAL
 		animacao.play("idle")
+		$"Som-passos".volume_db = 15
+		stop_footstep_sound()
 	else:
+		configure_footstep_sound()
 		if velocidade < VELOCIDADE_MAXIMA:
 			velocidade += ACELERACAO
-			print("velocidade: " + str(velocidade))
 		else:
 			emit_signal("esta_correndo")
+			$"Som-passos".volume_db = 20
 	
 	if direction_x: # -1 ou 1
 		if direction_x == -1: # esquerda
@@ -43,3 +48,14 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, velocidade) # parado
 	
 	move_and_slide()
+
+func configure_footstep_sound():
+	if andando: return
+	andando = true
+	$"Som-passos".play()
+
+func stop_footstep_sound():
+	if !andando: return
+	andando = false
+	$"Som-passos".stop()
+	

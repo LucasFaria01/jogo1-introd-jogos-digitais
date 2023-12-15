@@ -22,4 +22,4 @@ func _process(delta):
 				"AAAAAAAAAAAAAAAAAA"
 			]
 			$"../CanvasLayer".add_child(dialogBox)
-			get_tree().paused = true
+			# get_tree().paused = true

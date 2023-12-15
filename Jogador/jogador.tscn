@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bi2m06bjrd48w"]
+[gd_scene load_steps=25 format=3 uid="uid://bi2m06bjrd48w"]
 
 [ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_7rpog"]
 [ext_resource type="Texture2D" uid="uid://bhuireogepjio" path="res://Assets/SimpleCharacter/Girl-Sheet.png" id="2_80vl2"]
+[ext_resource type="AudioStream" uid="uid://yr51uuh4vm1a" path="res://Assets/Sounds/andando-na-grama.mp3" id="3_7ttrq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3blt"]
 
@@ -187,5 +188,10 @@ shape = SubResource("CapsuleShape2D_o3blt")
 
 [node name="Animacao" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dj4hq")
-animation = &"idle"
+animation = &"andar_esquerda"
 autoplay = "idle"
+frame_progress = 0.122218
+
+[node name="Som-passos" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7ttrq")
+volume_db = 15.0

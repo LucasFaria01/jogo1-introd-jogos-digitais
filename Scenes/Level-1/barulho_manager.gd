@@ -4,6 +4,7 @@ extends Control
 @onready var jogador := $"../../Jogador_1"
 
 var barulho = 0
+var descoberto = false
 
 func _ready():
 	jogador.esta_correndo.connect(update_barulho_correndo)
@@ -32,10 +33,14 @@ func update_barulho_counter(incremento: float):
 		exibir_dica_barulho()
 	
 	barulho += incremento
-	barulho_counter.text = str(int(barulho)) + "%"
 	
 	if barulho >= 100:
-		print("GAME OVER!")
+		barulho = 100
+		if !descoberto:
+			descoberto = true
+			trigger_end()
+	
+	barulho_counter.text = str(int(barulho)) + "%"
 
 func exibir_dica_barulho():
 	var dialogBox = load("res://Dialog/DialogBox.tscn").instantiate()
@@ -43,4 +48,20 @@ func exibir_dica_barulho():
 		"Evite correr, passar por arbustos, árvores, ou terrenos que façam barulho, isso incrementa seu medidor de barulho e alerta o Encourado!"
 	]
 	$"../../CanvasLayer".add_child(dialogBox)
-	get_tree().paused = true
+
+
+func trigger_end():
+	$"../../Descoberto".process_mode = Node.PROCESS_MODE_ALWAYS
+	$"../../Descoberto".play()
+	var dialogBox = load("res://Dialog/DialogBox.tscn").instantiate()
+	dialogBox.dialog = [
+		"Você foi descoberto, corra o mais rápido que puder!"
+	]
+	$"../../CanvasLayer".add_child(dialogBox)
+
+
+
+
+
+
+

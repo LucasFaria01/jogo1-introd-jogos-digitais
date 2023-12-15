@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ccr6diyui7op4"]
+[gd_scene load_steps=35 format=3 uid="uid://ccr6diyui7op4"]
 
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="1_17kjs"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="2_xrds1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dehbtlwvboph1" path="res://Assets/Tileset-Terrain2-darkercolors.png" id="9_d8voc"]
 [ext_resource type="Texture2D" uid="uid://bhfrujrgkulpl" path="res://Assets/Igreja-base.png" id="10_1ty8t"]
 [ext_resource type="Texture2D" uid="uid://eu6xslweu524" path="res://Assets/Igreja-paredes.png" id="11_qs1uy"]
+[ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva-e-trovoes.mp3" id="18_oa2kf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_myn5o"]
 texture = ExtResource("1_17kjs")
@@ -12869,6 +12870,11 @@ script = ExtResource("6_wqmo1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(576, 131)
 shape = SubResource("RectangleShape2D_kx28h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_oa2kf")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

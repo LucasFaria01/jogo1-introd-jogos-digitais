@@ -17,4 +17,5 @@ func _process(delta):
 		
 		dialogBox = load("res://Dialog/DialogBox.tscn").instantiate()
 		dialogBox.dialog = ["Não posso voltar agora, preciso resolver isto!"]
+		dialogBox.pause_when_show = false
 		$"../CanvasLayer".add_child(dialogBox)

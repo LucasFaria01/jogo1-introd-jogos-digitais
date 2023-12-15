@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://diwj7h7yjw5xr"]
+[gd_scene load_steps=42 format=3 uid="uid://diwj7h7yjw5xr"]
 
 [ext_resource type="Script" path="res://Scenes/Level-1/fase_01.gd" id="1_p1awb"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="2_6keei"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Scenes/Level-1/Final-1-final-collision.gd" id="12_upw6u"]
 [ext_resource type="Script" path="res://Scenes/Level-1/Fase-1-vaso-collision.gd" id="13_6oaoe"]
 [ext_resource type="Script" path="res://Scenes/Level-1/barulho_manager.gd" id="14_ao21r"]
+[ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva-e-trovoes.mp3" id="15_wm8mb"]
+[ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="16_thuy3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_am36i"]
 radius = 0.55
@@ -7281,7 +7283,7 @@ position = Vector2(346, 244)
 script = ExtResource("1_p1awb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(250, 123)
+position = Vector2(250, 135)
 scale = Vector2(1.325, 1.325)
 zoom = Vector2(3, 3)
 
@@ -7293,7 +7295,7 @@ color = Color(0.109804, 0.168627, 0.247059, 1)
 top_level = true
 light_mask = 17
 visibility_layer = 17
-position = Vector2(596, 367)
+position = Vector2(596, 379)
 scale = Vector2(1.325, 1.325)
 collision_layer = 33
 collision_mask = 33
@@ -7457,16 +7459,29 @@ rotation = 0.79266
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Agua"]
 shape = SubResource("RectangleShape2D_hcmck")
 
+[node name="Chuva" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_wm8mb")
+volume_db = -5.0
+autoplay = true
+
+[node name="Descoberto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_thuy3")
+
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
 [connection signal="body_entered" from="Vaso" to="Vaso" method="_on_body_entered"]
 [connection signal="body_exited" from="Vaso" to="Vaso" method="_on_body_exited"]
 [connection signal="body_entered" from="InicioFase" to="InicioFase" method="_on_body_entered"]
 [connection signal="body_exited" from="InicioFase" to="InicioFase" method="_on_body_exited"]
+[connection signal="body_entered" from="Arbusto" to="." method="_on_arbusto_body_entered"]
 [connection signal="body_entered" from="Arbusto" to="HUD/control" method="_on_arbusto_body_entered"]
 [connection signal="body_entered" from="Arbusto" to="Arbusto" method="_on_body_entered"]
 [connection signal="body_exited" from="Arbusto" to="Arbusto" method="_on_body_exited"]
+[connection signal="body_entered" from="Arvore" to="." method="_on_arvore_body_entered"]
 [connection signal="body_entered" from="Arvore" to="HUD/control" method="_on_arvore_body_entered"]
+[connection signal="body_entered" from="Arvore-menor-1" to="." method="_on_arvoremenor_1_body_entered"]
 [connection signal="body_entered" from="Arvore-menor-1" to="HUD/control" method="_on_arvoremenor_1_body_entered"]
+[connection signal="body_entered" from="Arvore-menor-2" to="." method="_on_arvoremenor_2_body_entered"]
 [connection signal="body_entered" from="Arvore-menor-2" to="HUD/control" method="_on_arvoremenor_2_body_entered"]
+[connection signal="body_entered" from="Agua" to="." method="_on_agua_body_entered"]
 [connection signal="body_entered" from="Agua" to="HUD/control" method="_on_agua_body_entered"]

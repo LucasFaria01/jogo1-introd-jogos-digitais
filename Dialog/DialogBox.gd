@@ -6,11 +6,19 @@ var dialog = [
 	'Esses textos ajudarão o player a compreender o background do jogo'
 ]
 
+var pause_when_show = true
 var dialog_index = 0
 var finished = false
 
+@export var stream: AudioStream
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	AudioManager.play_sound(stream)
+		
+	if pause_when_show:
+		get_tree().paused = true
+	
 	load_dialog()
 
 func _process(delta):
