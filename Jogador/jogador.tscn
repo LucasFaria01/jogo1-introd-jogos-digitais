@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_7rpog"]
 [ext_resource type="Texture2D" uid="uid://bhuireogepjio" path="res://Assets/SimpleCharacter/Girl-Sheet.png" id="2_80vl2"]
-[ext_resource type="AudioStream" uid="uid://yr51uuh4vm1a" path="res://Assets/Sounds/andando-na-grama.mp3" id="3_7ttrq"]
+[ext_resource type="AudioStream" uid="uid://yr51uuh4vm1a" path="res://Assets/Sounds/andando_na_grama.mp3" id="3_7ttrq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3blt"]
 

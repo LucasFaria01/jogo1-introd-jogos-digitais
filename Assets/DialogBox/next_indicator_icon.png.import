@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dykoop674atgy"
-path="res://.godot/imported/dialog-background.png-faac9e792b93f5dbfebad37a2c8c4460.ctex"
+uid="uid://dreg36ariau44"
+path="res://.godot/imported/next_indicator_icon.png-afd08d088e29db1f5b058bec515f3568.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/DialogBox/dialog-background.png"
-dest_files=["res://.godot/imported/dialog-background.png-faac9e792b93f5dbfebad37a2c8c4460.ctex"]
+source_file="res://Assets/DialogBox/next_indicator_icon.png"
+dest_files=["res://.godot/imported/next_indicator_icon.png-afd08d088e29db1f5b058bec515f3568.ctex"]
 
 [params]
 

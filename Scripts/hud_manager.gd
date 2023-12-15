@@ -10,16 +10,17 @@ var seconds = 0
 
 signal time_is_up()
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	timer_counter.text = str(Globals.timer)
 	timer_counter.text = str("%02d" % default_minutes) + ":" + str("%02d" % default_seconds)
 	reset_clock_timer()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	if minutes == 0 and seconds == 0:
 		emit_signal("time_is_up")
+
 
 func _on_clock_timer_timeout():
 	if seconds == 0:
@@ -29,6 +30,7 @@ func _on_clock_timer_timeout():
 	seconds -= 1
 	
 	timer_counter.text = str("%02d" % minutes) + ":" + str("%02d" % seconds)
+
 
 func reset_clock_timer():
 	minutes = default_minutes

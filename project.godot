@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Jogo"
-run/main_scene="res://Scenes/Level-1/fase_01.tscn"
+run/main_scene="res://Scenes/Level-1/level_01.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
-AudioManager="*res://Scripts/AudioManager.gd"
+AudioManager="*res://Scripts/audio_manager.gd"
 
 [display]
 

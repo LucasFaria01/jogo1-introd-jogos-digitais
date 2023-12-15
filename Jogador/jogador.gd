@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var velocidade = VELOCIDADE_INICIAL
+var _velocidade = VELOCIDADE_INICIAL
 const VELOCIDADE_INICIAL = 260.0
 const VELOCIDADE_MAXIMA = 360.0
 const ACELERACAO = 1
@@ -11,48 +11,51 @@ signal esta_correndo()
 
 @onready var animacao = $Animacao as AnimatedSprite2D
 
+
 func _physics_process(_delta):
-	var direction_x = Input.get_axis("player_1_esquerda", "player_1_direita") #-1 0 1 
-	var direction_y = Input.get_axis("player_1_cima", "player_1_baixo") #-1 0 1
+	var direcao_x = Input.get_axis("player_1_esquerda", "player_1_direita") #-1 0 1 
+	var direcao_y = Input.get_axis("player_1_cima", "player_1_baixo") #-1 0 1
 	
-	if direction_x == 0 and direction_y == 0:
-		velocidade = VELOCIDADE_INICIAL
+	if direcao_x == 0 and direcao_y == 0:
+		_velocidade = VELOCIDADE_INICIAL
 		animacao.play("idle")
 		$"Som-passos".volume_db = 15
 		stop_footstep_sound()
 	else:
 		configure_footstep_sound()
-		if velocidade < VELOCIDADE_MAXIMA:
-			velocidade += ACELERACAO
+		if _velocidade < VELOCIDADE_MAXIMA:
+			_velocidade += ACELERACAO
 		else:
 			emit_signal("esta_correndo")
 			$"Som-passos".volume_db = 20
 	
-	if direction_x: # -1 ou 1
-		if direction_x == -1: # esquerda
+	if direcao_x: # -1 ou 1
+		if direcao_x == -1: # esquerda
 			animacao.play("andar_esquerda")
 		else:
 			animacao.play("andar_direita")#
-		velocity.x = direction_x * velocidade # esquerda/direita
+		velocity.x = direcao_x * _velocidade # esquerda/direita
 	else: # 0
-		velocity.x = move_toward(velocity.x, 0, velocidade) # parado
+		velocity.x = move_toward(velocity.x, 0, _velocidade) # parado
 		
 		
-	if direction_y: # -1 ou 1
-		if direction_y == -1:
+	if direcao_y: # -1 ou 1
+		if direcao_y == -1:
 			animacao.play("andar_cima")
 		else:
 			animacao.play("andar_baixo")
-		velocity.y = direction_y * velocidade # cima/baixo
+		velocity.y = direcao_y * _velocidade # cima/baixo
 	else: # 0
-		velocity.y = move_toward(velocity.y, 0, velocidade) # parado
+		velocity.y = move_toward(velocity.y, 0, _velocidade) # parado
 	
 	move_and_slide()
+
 
 func configure_footstep_sound():
 	if andando: return
 	andando = true
 	$"Som-passos".play()
+
 
 func stop_footstep_sound():
 	if !andando: return

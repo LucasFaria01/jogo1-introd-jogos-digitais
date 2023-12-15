@@ -2,11 +2,14 @@ extends Area2D
 
 var habilitado = false
 
+
 func _on_body_entered(body):
 	habilitado = true
 
+
 func _on_body_exited(body):
 	habilitado = false
+
 
 func _process(delta):
 	if habilitado:
