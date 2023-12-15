@@ -60,10 +60,7 @@ func exibir_dica_barulho():
 
 
 func trigger_end():
+	AudioManager.play_sound(preload("res://Assets/Sounds/som_encourado.mp3"))
+	await get_tree().create_timer(2).timeout
 	$"../../Descoberto".process_mode = Node.PROCESS_MODE_ALWAYS
 	$"../../Descoberto".play()
-	var dialogBox = load("res://Dialog/dialog_box.tscn").instantiate()
-	dialogBox.dialogos = [
-		"Você foi descoberto, corra o mais rápido que puder!"
-	]
-	$"../../CanvasLayer".add_child(dialogBox)

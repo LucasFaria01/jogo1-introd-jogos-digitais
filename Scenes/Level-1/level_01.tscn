@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://diwj7h7yjw5xr"]
+[gd_scene load_steps=44 format=3 uid="uid://diwj7h7yjw5xr"]
 
 [ext_resource type="Script" path="res://Scenes/Level-1/level_01.gd" id="1_xruvx"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="2_6keei"]
@@ -7278,6 +7278,12 @@ height = 42.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcmck"]
 size = Vector2(65.5347, 65.994)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkbqp"]
+size = Vector2(37, 1245)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7gsj"]
+size = Vector2(26, 1315)
+
 [node name="Level1" type="Node2D"]
 position = Vector2(346, 244)
 script = ExtResource("1_xruvx")
@@ -7467,6 +7473,18 @@ autoplay = true
 [node name="Descoberto" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_thuy3")
 
+[node name="SomCenario1" type="Area2D" parent="."]
+position = Vector2(1574, 86)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SomCenario1"]
+shape = SubResource("RectangleShape2D_gkbqp")
+
+[node name="SomCenario2" type="Area2D" parent="."]
+position = Vector2(2106, 92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SomCenario2"]
+shape = SubResource("RectangleShape2D_c7gsj")
+
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
 [connection signal="body_entered" from="Vaso" to="Vaso" method="_on_body_entered"]
@@ -7485,3 +7503,5 @@ stream = ExtResource("16_thuy3")
 [connection signal="body_entered" from="ArvoreMenor2" to="HUD/Control" method="_on_arvoremenor_2_body_entered"]
 [connection signal="body_entered" from="Agua" to="." method="_on_agua_body_entered"]
 [connection signal="body_entered" from="Agua" to="HUD/Control" method="_on_agua_body_entered"]
+[connection signal="body_entered" from="SomCenario1" to="." method="_on_som_cenario_1_body_entered"]
+[connection signal="body_entered" from="SomCenario2" to="." method="_on_som_cenario_2_body_entered"]
