@@ -7273,8 +7273,7 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_xcs1k"]
-font_size = 14
+[sub_resource type="LabelSettings" id="LabelSettings_77l3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58uxp"]
 size = Vector2(129, 63)
@@ -7316,6 +7315,7 @@ scale = Vector2(0.8, 0.8)
 zoom = Vector2(3, 3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.109804, 0.168627, 0.247059, 1)
 
 [node name="Jogador1" parent="." instance=ExtResource("2_6keei")]
@@ -7387,7 +7387,7 @@ offset_right = 275.0
 offset_bottom = 104.0
 text = "[E] para interagir
 "
-label_settings = SubResource("LabelSettings_xcs1k")
+label_settings = SubResource("LabelSettings_77l3w")
 
 [node name="FinalFase" type="Area2D" parent="."]
 position = Vector2(2743, 208)

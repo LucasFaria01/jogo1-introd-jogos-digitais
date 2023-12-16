@@ -18,6 +18,8 @@ func _process(delta):
 	if exibir:
 		
 		if Input.is_action_just_pressed("tecla_e"):
+			$"../FinalFase".pegou_item = true
+			
 			dialogBox = load("res://Dialog/dialog_box.tscn").instantiate()
 			dialogBox.dialogos = [
 				"Primeira frase de história",

@@ -7,7 +7,7 @@ var dialogBox
 func _on_body_entered(body):
 	habilitado = true
 	$"../Label".visible = true
-	
+
 
 func _on_body_exited(body):
 	habilitado = false

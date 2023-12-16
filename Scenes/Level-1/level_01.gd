@@ -14,7 +14,10 @@ var _risada_demoniaca = preload("res://Assets/Sounds/risada_demoniaca.mp3")
 
 
 func _process(delta):
-	$Label.position = Vector2($Jogador1.position.x - 400, $Jogador1.position.y - 290)
+	var new_sb = StyleBoxFlat.new()
+	new_sb.bg_color = Color.BLACK
+	$Label.add_theme_stylebox_override("normal", new_sb)
+	$Label.position = Vector2($Jogador1.position.x - 400, $Jogador1.position.y - 300)
 
 
 func _on_arbusto_body_entered(body):

@@ -6,10 +6,12 @@ var dialogBox
 
 func _on_body_entered(body: CharacterBody2D):
 	habilitado = true
+	$"../Label".visible = true
 
 
 func _on_body_exited(body):
 	habilitado = false
+	$"../Label".visible = false
 
 
 func _process(delta):

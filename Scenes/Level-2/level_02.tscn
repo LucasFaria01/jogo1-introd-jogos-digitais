@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccr6diyui7op4"]
+[gd_scene load_steps=19 format=3 uid="uid://ccr6diyui7op4"]
 
+[ext_resource type="Script" path="res://Scenes/Level-2/level_02.gd" id="1_8x7su"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="1_dnget"]
 [ext_resource type="PackedScene" uid="uid://d26ovq37t0wyg" path="res://Assets/tile_map.tscn" id="1_o8fg6"]
 [ext_resource type="AudioStream" uid="uid://glki0hfsh6by" path="res://Assets/Sounds/andando_no_concreto.mp3" id="2_5d52y"]
@@ -14,6 +15,8 @@
 [ext_resource type="Script" path="res://Scripts/barulho_manager.gd" id="19_vubtj"]
 [ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="20_7jh4h"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_htcmh"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ehmhp"]
 radius = 29.0689
 
@@ -24,9 +27,9 @@ size = Vector2(68, 59.5)
 size = Vector2(56, 56)
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_8x7su")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.0156863, 0.0156863, 0.0156863, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("1_o8fg6")]
@@ -49,6 +52,17 @@ remote_path = NodePath("../../Camera2D")
 position = Vector2(-6.10352e-05, 0.754723)
 scale = Vector2(0.617924, 0.614976)
 texture = ExtResource("2_16jtt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 6
+offset_left = 224.0
+offset_top = 78.0
+offset_right = 354.0
+offset_bottom = 104.0
+text = "[E] para interagir
+"
+label_settings = SubResource("LabelSettings_htcmh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(596, 367)
