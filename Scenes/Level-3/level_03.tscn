@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://d555q63gdkix"]
+[gd_scene load_steps=19 format=3 uid="uid://d555q63gdkix"]
 
 [ext_resource type="Script" path="res://Scenes/Level-3/level_03.gd" id="1_ajrui"]
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="1_ogqon"]
 [ext_resource type="Texture2D" uid="uid://l1n14gmv1f52" path="res://Assets/Pixel Art Top Down/TX Props.png" id="2_c1m1e"]
+[ext_resource type="PackedScene" path="res://tile_map_3.tscn" id="2_ceawn"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="3_imvfo"]
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="4_8odne"]
 [ext_resource type="Script" path="res://Scenes/Level-3/final_level_collision.gd" id="5_44fre"]
@@ -641,10 +642,14 @@ radius = 29.0172
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_ajrui")
 
+[node name="TileMap2" parent="." instance=ExtResource("2_ceawn")]
+position = Vector2(648, 215)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.109804, 0.168627, 0.247059, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 position = Vector2(640, 211)
 tile_set = SubResource("TileSet_ocya0")
 format = 2
@@ -662,7 +667,7 @@ top_level = true
 light_mask = 17
 visibility_layer = 17
 position = Vector2(596, 367)
-scale = Vector2(1.325, 1.325)
+scale = Vector2(0.9, 0.9)
 collision_layer = 513
 collision_mask = 513
 
@@ -680,7 +685,7 @@ texture = ExtResource("4_8odne")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(596, 367)
-scale = Vector2(1.325, 1.325)
+scale = Vector2(0.9, 0.9)
 zoom = Vector2(3, 3)
 
 [node name="FinalFase" type="Area2D" parent="."]
