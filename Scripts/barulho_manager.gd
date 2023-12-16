@@ -5,6 +5,7 @@ extends Control
 
 var barulho = 0
 var descoberto = false
+var habilitado = false
 
 
 func _ready():
@@ -37,6 +38,9 @@ func _on_agua_body_entered(body):
 
 	
 func update_barulho_counter(incremento: float):
+	if not habilitado:
+		return
+	
 	if barulho == 0 and incremento > 0:
 		if get_tree().current_scene.name == "Level1":
 			exibir_dica_barulho()
@@ -61,6 +65,9 @@ func exibir_dica_barulho():
 
 
 func trigger_end():
+	$"../../Encourado".visible = true
+	$"../../Encourado".perseguindo = true
+	
 	AudioManager.play_sound(preload("res://Assets/Sounds/som_encourado.mp3"))
 	await get_tree().create_timer(2).timeout
 	$"../../Descoberto".process_mode = Node.PROCESS_MODE_ALWAYS

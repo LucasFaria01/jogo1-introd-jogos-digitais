@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Jogador
+
 const VELOCIDADE_INICIAL = 260.0
 const VELOCIDADE_MAXIMA = 360.0
 const ACELERACAO = 1

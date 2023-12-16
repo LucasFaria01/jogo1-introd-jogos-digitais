@@ -71,6 +71,10 @@ tecla_e={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_10="Jogador"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

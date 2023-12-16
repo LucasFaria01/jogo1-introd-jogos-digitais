@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4g815ulie2u5"]
+
+[ext_resource type="Script" path="res://Encourado/encourado.gd" id="1_cpxjw"]
+[ext_resource type="Texture2D" uid="uid://bpvufayqlf335" path="res://Assets/Estatua-Santa.png" id="1_grvet"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71v73"]
+radius = 20.0
+height = 84.0
+
+[node name="Encourado" type="CharacterBody2D"]
+collision_layer = 512
+script = ExtResource("1_cpxjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_grvet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_71v73")
