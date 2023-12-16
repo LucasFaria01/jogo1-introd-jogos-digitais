@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://glki0hfsh6by" path="res://Assets/Sounds/andando_no_concreto.mp3" id="2_5d52y"]
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="2_16jtt"]
 [ext_resource type="PackedScene" uid="uid://b4g815ulie2u5" path="res://Encourado/encourado.tscn" id="11_e3r1i"]
-[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://pause_menu.tscn" id="12_guibl"]
+[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://Scenes/Pause/pause_menu.tscn" id="12_guibl"]
 [ext_resource type="Script" path="res://Scenes/Level-2/final_level_collision.gd" id="15_sr7e2"]
 [ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="16_cexag"]
 [ext_resource type="Script" path="res://Scenes/Level-2/level_02_item.gd" id="17_r0g8h"]

@@ -26,4 +26,4 @@ func _physics_process(delta):
 			var collider = collision.get_collider()
 		
 			if collider is Jogador:
-				get_tree().change_scene_to_file("res://Scenes/Level-4-Game Over/level_04.tscn")
+				get_tree().change_scene_to_file("res://Scenes/Game-over/game_over.tscn")

@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="15_gjibw"]
 [ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva_e_trovoes.mp3" id="15_wm8mb"]
 [ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="16_thuy3"]
-[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://pause_menu.tscn" id="18_i7q5n"]
+[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://Scenes/Pause/pause_menu.tscn" id="18_i7q5n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_am36i"]
 radius = 0.55

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Level-3/level_03.gd" id="1_ajrui"]
 [ext_resource type="Texture2D" uid="uid://c61whjo07mlaj" path="res://Assets/Pixel Art Top Down/TX Tileset Grass.png" id="1_ogqon"]
 [ext_resource type="Texture2D" uid="uid://l1n14gmv1f52" path="res://Assets/Pixel Art Top Down/TX Props.png" id="2_c1m1e"]
-[ext_resource type="PackedScene" path="res://tile_map_3.tscn" id="2_ceawn"]
+[ext_resource type="PackedScene" uid="uid://pfjo15jhepga" path="res://tile_map_3.tscn" id="2_ceawn"]
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="3_imvfo"]
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="4_8odne"]
 [ext_resource type="Script" path="res://Scenes/Level-3/final_level_collision.gd" id="5_44fre"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="8_snqs6"]
 [ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="9_7ds5e"]
 [ext_resource type="PackedScene" uid="uid://b4g815ulie2u5" path="res://Encourado/encourado.tscn" id="10_70pgv"]
-[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://pause_menu.tscn" id="12_jorld"]
+[ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://Scenes/Pause/pause_menu.tscn" id="12_jorld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cby0"]
 texture = ExtResource("1_ogqon")
