@@ -12,7 +12,6 @@ font_color = Color(0.121569, 0.643137, 0.207843, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_fbkkw"]
 font = ExtResource("2_n7bgw")
 font_size = 14
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agkpx"]
 
@@ -44,6 +43,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 486.0
+offset_top = 452.0
+offset_right = -485.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MenuHolder" type="VBoxContainer" parent="."]
 anchors_preset = 14
@@ -64,17 +75,9 @@ label_settings = SubResource("LabelSettings_wed1f")
 [node name="HistoriaLabel" type="Label" parent="MenuHolder"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Quisque commodo magna sed odio lobortis ultrices. 
-Nullam vel urna sit amet diam suscipit dignissim quis vitae ipsum. 
-Donec tempus dictum justo. Maecenas lacus diam, aliquam id gravida vel, laoreet a magna. 
-In hac habitasse platea dictumst. 
-Suspendisse iaculis, quam laoreet pharetra pulvinar, 
-lacus lectus consectetur nulla, ac convallis risus purus vel turpis. 
-Vivamus sollicitudin mollis rhoncus. Fusce nec vulputate felis.
- Suspendisse pharetra eget diam vel finibus. Sed laoreet ultrices ipsum aliquet scelerisque. 
-Duis ligula velit, malesuada at arcu sit amet, maximus scelerisque tortor.
-Sed quam nulla, tempus et consequat a, vestibulum non urna."
+text = "Você conseguiu coletar os itens necessários e selar o Encourado.
+
+Até quando esta besta irá dormir, porém?"
 label_settings = SubResource("LabelSettings_fbkkw")
 horizontal_alignment = 1
 

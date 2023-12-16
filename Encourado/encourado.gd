@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var velocidade = 160
+@export var velocidade = 400
 
 var posicao_jogador
 var posicao_alvo
@@ -18,8 +18,6 @@ func _physics_process(delta):
 	
 	if position.distance_to(posicao_jogador) > 3:
 		
-		$Sprite2D.flip_v = posicao_alvo.x < 0
-		look_at(posicao_jogador)
 		
 		var collision = move_and_collide((posicao_alvo * velocidade) * delta)
 		if collision:

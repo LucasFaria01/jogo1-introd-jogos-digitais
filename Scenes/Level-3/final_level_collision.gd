@@ -13,7 +13,8 @@ func _process(delta):
 			else:
 				dialogBox = load("res://Dialog/dialog_box.tscn").instantiate()
 				dialogBox.dialogos = [
-					"Preciso do último item pro ritual!"
+					"Alguém estava tentando realizar um ritual aqui.",
+					"Para conclui-lo, eu preciso de mais alguma coisa..."
 				]
 				$"../CanvasLayer".add_child(dialogBox)
 

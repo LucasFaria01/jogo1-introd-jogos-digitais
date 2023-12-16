@@ -19,7 +19,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("tecla_e"):
 			dialogBox = load("res://Dialog/dialog_box.tscn").instantiate()
 			dialogBox.dialogos = [
-				"Frase de LORE (pegou item)"
+				"Você achou um crucifixo. Agora deve dar certo!"
 			]
 			$"../CanvasLayer".add_child(dialogBox)
 			$"../FinalFase".pegou_item = true

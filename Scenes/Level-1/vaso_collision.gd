@@ -22,8 +22,16 @@ func _process(delta):
 			
 			dialogBox = load("res://Dialog/dialog_box.tscn").instantiate()
 			dialogBox.dialogos = [
-				"Primeira frase de história",
-				"Segunda frase de história",
-				"AAAAAAAAAAAAAAAAAA"
+				"Uma carta ensanguentada está caída no chão.",
+				"Vossa Santidade, 
+Um monstro das trevas nos enganou e não tenho dúvidas que os atos de crueldade não se limitarão a nossa igreja. 
+
+ Alguns dos nossos desapareceram depois do ataque, espero que estejam em segurança e não só isso, mas também realizado o mesmo pedido que irei fazer. ",
+				"Peço que Vossa Santidade envie seus homens de fé para banir o monstro que assola nosso templo de volta pra as trevas, para nunca mais voltar. 
+
+Assinado,                         
+
+Padre Gustavo Silva",
+				"Ao lado da carta, você vê um pequeno frasco de vidro. Ele deve ser importante."
 			]
 			$"../CanvasLayer".add_child(dialogBox)
