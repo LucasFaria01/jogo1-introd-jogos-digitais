@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnukh78qt0yji"]
+[gd_scene load_steps=10 format=3 uid="uid://dnukh78qt0yji"]
 
 [ext_resource type="Script" path="res://Scenes/Vitoria/vitoria.gd" id="1_k3hby"]
 [ext_resource type="FontFile" uid="uid://c1043om10kk63" path="res://Assets/Fonts/retro_gaming.ttf" id="2_n7bgw"]
-[ext_resource type="Theme" uid="uid://bx3v14lipugh0" path="res://Assets/pause_menu.tres" id="3_75jui"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wed1f"]
 line_spacing = 80.0
@@ -14,6 +13,26 @@ font_color = Color(0.121569, 0.643137, 0.207843, 1)
 font = ExtResource("2_n7bgw")
 font_size = 14
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agkpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1r3xq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k70ah"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfqu6"]
+
+[sub_resource type="Theme" id="Theme_ulscd"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.184314, 0.52549, 0.333333, 1)
+Button/colors/font_hover_color = Color(0.184314, 0.52549, 0.333333, 1)
+Button/colors/font_hover_pressed_color = Color(0.184314, 0.52549, 0.333333, 1)
+Button/colors/font_pressed_color = Color(0.184314, 0.52549, 0.333333, 1)
+Button/fonts/font = ExtResource("2_n7bgw")
+Button/styles/focus = SubResource("StyleBoxEmpty_agkpx")
+Button/styles/hover = SubResource("StyleBoxEmpty_1r3xq")
+Button/styles/normal = SubResource("StyleBoxEmpty_k70ah")
+Button/styles/pressed = SubResource("StyleBoxEmpty_nfqu6")
 
 [node name="Vitoria" type="CanvasLayer"]
 process_mode = 3
@@ -65,7 +84,7 @@ layout_mode = 2
 
 [node name="Quit" type="Button" parent="MenuHolder"]
 layout_mode = 2
-theme = ExtResource("3_75jui")
+theme = SubResource("Theme_ulscd")
 text = "FINALIZAR JOGO"
 
 [connection signal="pressed" from="MenuHolder/Quit" to="." method="_on_quit_pressed"]

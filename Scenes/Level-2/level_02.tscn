@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccr6diyui7op4"]
+[gd_scene load_steps=17 format=3 uid="uid://ccr6diyui7op4"]
 
 [ext_resource type="PackedScene" uid="uid://bi2m06bjrd48w" path="res://Jogador/jogador.tscn" id="1_dnget"]
 [ext_resource type="PackedScene" uid="uid://d26ovq37t0wyg" path="res://Assets/tile_map.tscn" id="1_o8fg6"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c08rcmevkwel2" path="res://Assets/light-texture.png" id="2_16jtt"]
 [ext_resource type="PackedScene" uid="uid://b4g815ulie2u5" path="res://Encourado/encourado.tscn" id="11_e3r1i"]
 [ext_resource type="PackedScene" uid="uid://cudewqh52qmk2" path="res://Scenes/Pause/pause_menu.tscn" id="12_guibl"]
+[ext_resource type="Script" path="res://Scenes/Level-2/Item2.gd" id="13_glsdd"]
+[ext_resource type="Script" path="res://Scenes/Level-2/Item1.gd" id="13_y1775"]
 [ext_resource type="Script" path="res://Scenes/Level-2/final_level_collision.gd" id="15_sr7e2"]
 [ext_resource type="Script" path="res://Scripts/hud_manager.gd" id="16_cexag"]
-[ext_resource type="Script" path="res://Scenes/Level-2/level_02_item.gd" id="17_r0g8h"]
 [ext_resource type="AudioStream" uid="uid://bp8lxfk0j4f5j" path="res://Assets/Sounds/chuva_e_trovoes.mp3" id="18_7itlg"]
 [ext_resource type="Script" path="res://Scripts/barulho_manager.gd" id="19_vubtj"]
 [ext_resource type="AudioStream" uid="uid://63l8bxxeqokh" path="res://Assets/Sounds/descoberto.wav" id="20_7jh4h"]
@@ -16,12 +17,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ehmhp"]
 radius = 29.0689
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx28h"]
-size = Vector2(58, 64.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgv4v"]
+size = Vector2(68, 59.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_capyj"]
+size = Vector2(56, 56)
 
 [node name="Level2" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0156863, 0.0156863, 0.0156863, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("1_o8fg6")]
@@ -51,20 +56,11 @@ scale = Vector2(0.9, 0.9)
 zoom = Vector2(3, 3)
 
 [node name="FinalFase" type="Area2D" parent="."]
-position = Vector2(2825, 1133)
+position = Vector2(3402, 1256)
 script = ExtResource("15_sr7e2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinalFase"]
-position = Vector2(576, 131)
 shape = SubResource("CircleShape2D_ehmhp")
-
-[node name="Item" type="Area2D" parent="."]
-position = Vector2(192, 246)
-script = ExtResource("17_r0g8h")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
-position = Vector2(2045, 692)
-shape = SubResource("RectangleShape2D_kx28h")
 
 [node name="Chuva" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_7itlg")
@@ -169,8 +165,26 @@ collision_mask = 512
 
 [node name="PauseMenu" parent="." instance=ExtResource("12_guibl")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Item1" type="Area2D" parent="."]
+position = Vector2(2663, 483)
+script = ExtResource("13_y1775")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item1"]
+shape = SubResource("RectangleShape2D_fgv4v")
+
+[node name="Item2" type="Area2D" parent="."]
+position = Vector2(2232, 933)
+script = ExtResource("13_glsdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item2"]
+shape = SubResource("RectangleShape2D_capyj")
+
 [connection signal="body_entered" from="FinalFase" to="FinalFase" method="_on_body_entered"]
 [connection signal="body_exited" from="FinalFase" to="FinalFase" method="_on_body_exited"]
-[connection signal="body_entered" from="Item" to="Item" method="_on_body_entered"]
-[connection signal="body_exited" from="Item" to="Item" method="_on_body_exited"]
 [connection signal="timeout" from="HUD/TimerControl/ClockTimer" to="HUD/TimerControl" method="_on_clock_timer_timeout"]
+[connection signal="body_entered" from="Item1" to="Item1" method="_on_body_entered"]
+[connection signal="body_exited" from="Item1" to="Item1" method="_on_body_exited"]
+[connection signal="body_entered" from="Item2" to="Item2" method="_on_body_entered"]
+[connection signal="body_exited" from="Item2" to="Item2" method="_on_body_exited"]
