@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnukh78qt0yji"]
+
+[ext_resource type="Script" path="res://Scenes/Vitoria/vitoria.gd" id="1_k3hby"]
+[ext_resource type="FontFile" uid="uid://c1043om10kk63" path="res://Assets/Fonts/retro_gaming.ttf" id="2_n7bgw"]
+[ext_resource type="Theme" uid="uid://bx3v14lipugh0" path="res://Assets/pause_menu.tres" id="3_75jui"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wed1f"]
+line_spacing = 80.0
+font = ExtResource("2_n7bgw")
+font_size = 64
+font_color = Color(0.121569, 0.643137, 0.207843, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fbkkw"]
+font = ExtResource("2_n7bgw")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[node name="Vitoria" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_k3hby")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuHolder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VitoriaLabel" type="Label" parent="MenuHolder"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "VITÓRIA"
+label_settings = SubResource("LabelSettings_wed1f")
+
+[node name="HistoriaLabel" type="Label" parent="MenuHolder"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Quisque commodo magna sed odio lobortis ultrices. 
+Nullam vel urna sit amet diam suscipit dignissim quis vitae ipsum. 
+Donec tempus dictum justo. Maecenas lacus diam, aliquam id gravida vel, laoreet a magna. 
+In hac habitasse platea dictumst. 
+Suspendisse iaculis, quam laoreet pharetra pulvinar, 
+lacus lectus consectetur nulla, ac convallis risus purus vel turpis. 
+Vivamus sollicitudin mollis rhoncus. Fusce nec vulputate felis.
+ Suspendisse pharetra eget diam vel finibus. Sed laoreet ultrices ipsum aliquet scelerisque. 
+Duis ligula velit, malesuada at arcu sit amet, maximus scelerisque tortor.
+Sed quam nulla, tempus et consequat a, vestibulum non urna."
+label_settings = SubResource("LabelSettings_fbkkw")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuHolder"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="MenuHolder"]
+layout_mode = 2
+theme = ExtResource("3_75jui")
+text = "FINALIZAR JOGO"
+
+[connection signal="pressed" from="MenuHolder/Quit" to="." method="_on_quit_pressed"]
